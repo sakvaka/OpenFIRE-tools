@@ -5,7 +5,7 @@
 % Plots a seismic nmo or dmo stack. The input file must be provided in .su format.
 % The input file must also be migrated and depth-converted.
 %
-% Tested on Matlab r2016b.
+% Tested on Matlab r2014b.
 
 clear ; clc; close
 
