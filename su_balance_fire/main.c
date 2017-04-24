@@ -87,7 +87,7 @@ int main(int argc, char** argv) {
             nooftraces++;
             for (i=0; i<nt; i++) {
                 st_sum[i]+=fabs(tr.data[i]);
-                /* JOS RMS: st_sum[i]+=pow(tr.data[i],2.0); */
+                /* IF RMS: st_sum[i]+=pow(tr.data[i],2.0); */
             }
         }
 
@@ -167,7 +167,7 @@ int main(int argc, char** argv) {
     /* end of if (query==2) */
     }
 
-    /* collect energy diminish data in this datatype */
+    /* collect amplitude decay data in this datatype */
         if ((y=malloc(sizeof(double)*nt))==NULL) {
         fprintf(stderr,"Cannot allocate space for y.\n");
     }
@@ -217,7 +217,6 @@ int main(int argc, char** argv) {
     t_min=2.0;
     t_max=12.0;
     */
-
 
     for (i=4; i<0.8*nt; i++) {
         if (mig_sum[i]!=0.0) {
