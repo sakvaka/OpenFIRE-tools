@@ -1,6 +1,6 @@
 % plot_stack.m
-% Created by Mr S. Vakeva (2017) for the OpenFIRE project.
-% Ported from the legacy F77 code su_plot_fire.f by Mr J. Yliniemi (Uni Helsinki).
+% Created by S. Vakeva (2017) for the OpenFIRE project.
+% Ported from the legacy F77 code su_plot_fire.f by Mr J. Keskinen (Uni Helsinki).
 %
 % Plots a seismic nmo or dmo stack. The input file must be provided in .su format.
 % The input file must also be migrated and depth-converted.
