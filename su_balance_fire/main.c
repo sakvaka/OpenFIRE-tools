@@ -332,8 +332,8 @@ int main(int argc, char** argv) {
     /* end of query==2 */
     }
     fprintf(gnuplotPipe, "set xlabel \"TWT (seconds)\"\n");
-    fprintf(gnuplotPipe, "set ylabel \"mean amplitude of stack\"\n");
-    fprintf(gnuplotPipe, "set title \"Stack - amplitude decay\"\n");
+    fprintf(gnuplotPipe, "set ylabel \"scaling parameter\"\n");
+    fprintf(gnuplotPipe, "set title \"Relative amplitudes decay curve\"\n");
     fflush(gnuplotPipe);
     return 0;
 }
