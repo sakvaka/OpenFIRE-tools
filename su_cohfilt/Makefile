@@ -1,6 +1,5 @@
 # su_cohfilt - a program by
-# Sakari Väkevä
-# updated 04/24/2017
+# Sakari Väkevä, based on FORTRAN program by P. Heikkinen
 
 BASEDIR=/home/sakke
 TARGET=su_cohfilt
