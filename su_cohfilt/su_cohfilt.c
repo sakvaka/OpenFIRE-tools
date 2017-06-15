@@ -4,11 +4,15 @@
 #include <su.h>
 #include <segy.h>
 #include <cwp.h>
+
+#define LENMAX 16384
+#define PANMAX 120
+#define PTMAX 500
 /* 
  *     the command is run with
  *
  *     su_cohfilt <input.su >output.su 
- *
+ * 
  *     run with unlimited stack size!
  */
 int smooth(int iwin, int nleng, float* ros);
@@ -19,14 +23,14 @@ char **sdoc;
 int main(void) {
     int i,j;
     segy tr, tr2;
-    float ros[16384],rnim[16384];
-    float ramppi,rcoh[16384];
-    float trace2[16384],trace[16384],aputra[16384];
-    float migtra[16384][120];
-    int cdpind[120],trsind[120];
-    float distar[120];
-    float bell[120],ptbell[500];
-    int final,lenmax;
+    float ros[LENMAX],rnim[LENMAX];
+    float ramppi,rcoh[LENMAX];
+    float trace2[LENMAX],trace[LENMAX],aputra[LENMAX];
+    float migtra[LENMAX][PANMAX];
+    int cdpind[PANMAX],trsind[PANMAX];
+    float distar[PANMAX];
+    float bell[PANMAX],ptbell[PTMAX];
+    int final;
     float srate;
 
     float staspace,slomin,slomax,slodel;
@@ -39,7 +43,6 @@ int main(void) {
     float paino,weiwei,dista,xtee,amp;
     float slow;
 
-    lenmax=16384;
     final=0;
 
     /* set: staspace, slomin, slomax, slodel, nwid, ibell, iwindow, iptbell */
@@ -69,17 +72,17 @@ int main(void) {
     fprintf(stderr,"nofpt=%d\n",nofpt);
     pii=4.0*atan(1.0);
 
-    for (i=0;i<120;i++) {
-        for (j=0;j<lenmax;j++) {
+    for (i=0;i<PANMAX;i++) {
+        for (j=0;j<LENMAX;j++) {
             migtra[j][i]=0.0;
         }
     }
 
-    for (j=0;j<120;j++) {
+    for (j=0;j<PANMAX;j++) {
         bell[j]=1.0;
     }
 
-    for (j=0;j<120;j++) { 
+    for (j=0;j<PANMAX;j++) { 
         bell[j]=1.0;
     }
 
@@ -89,8 +92,8 @@ int main(void) {
         bell[nwid-1-j]=ramppi;
     }
 
-    if(nwid<120) {
-        for (j=nwid;j<120;j++) {
+    if(nwid<PANMAX) {
+        for (j=nwid;j<PANMAX;j++) {
             bell[j]=0.0;
         }
     }
@@ -99,7 +102,7 @@ int main(void) {
         fprintf(stderr,"j %d %f\n",j,bell[j]);
     }
 
-    for (j=0;j<500;j++) {
+    for (j=0;j<PTMAX;j++) {
         ptbell[j]=1.0;
     }
 
@@ -109,8 +112,8 @@ int main(void) {
         ptbell[nofpt-1-j]=ramppi;
     }
 
-    if(nofpt<500) {
-        for (j=nofpt;j<500;j++) {
+    if(nofpt<PTMAX) {
+        for (j=nofpt;j<PTMAX;j++) {
             ptbell[j]=0.0;
         }
     }
@@ -170,13 +173,13 @@ loop1:
 
     /*----  start pt */                      
 
-    for (j=0;j<lenmax;j++) {
+    for (j=0;j<LENMAX;j++) {
         trace2[j]=0.0;
     }
 
     nleng=tr.ns;
-    if (nleng>lenmax) {
-        nleng=lenmax;
+    if (nleng>LENMAX) {
+        nleng=LENMAX;
     } 
     ndatlen=tr.ns;
 
@@ -185,7 +188,7 @@ loop1:
         paino=ptbell[iii];
         slow=slomin+(float)(iii)*slodel;
 
-        for (j=0;j<lenmax;j++) {
+        for (j=0;j<LENMAX;j++) {
             aputra[j]=0.0;
             trace[j]=0.0;
         }
@@ -257,7 +260,7 @@ loop1:
             migtra[jk][itra]=migtra[jk][itra+1];
         }
     }
-    for (jk=0;jk<lenmax;jk++) {
+    for (jk=0;jk<LENMAX;jk++) {
         migtra[jk][nwid]=0.0;
     }
 
