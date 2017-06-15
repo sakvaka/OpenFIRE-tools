@@ -1,5 +1,11 @@
 # su_cohfilt - a program by
 # Sakari Väkevä, based on FORTRAN program by P. Heikkinen
+# assumes the include files to be in $BASEDIR/include
+# assumes the executable target to be $BASEDIR/bin
+# assumes the library directory to be $BASEDIR/lib
+# assumes Seismic Un*x libraries to be in $BASEDIR/cwp/lib etc.
+# prerequisites: Seismic Un*x
+# compiled on GCC 4.5.1
 
 BASEDIR=/home/sakke
 TARGET=su_cohfilt
