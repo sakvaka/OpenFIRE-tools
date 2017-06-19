@@ -14,6 +14,7 @@
  *     su_cohfilt <input.su >output.su 
  * 
  *     run with unlimited stack size!
+ *	ie. first run "ulimit -s unlimited"
  */
 int smooth(int iwin, int nleng, float* ros);
 int semb(float* ros, float* rnim, float* rcoh, float rnorm, int nleng);
@@ -34,8 +35,8 @@ int main(void) {
     float srate;
 
     float staspace,slomin,slomax,slodel;
-    int nwid,ibell,iwindow,iptbell;
-    float kwin,apu,pii;
+    int nwid,kwin,ibell,iwindow,iptbell;
+    float apu,pii;
     float rnorm;
     int nofpt,ipanel,iover,itrace,nmid;
     int nleng,ndatlen,iii,kloop,iviive,jmin,jmax,jk;
@@ -46,13 +47,15 @@ int main(void) {
     final=0;
 
     /* set: staspace, slomin, slomax, slodel, nwid, ibell, iwindow, iptbell */
-    /* TODO: lue tiedostosta */
+    /* TODO: read from a file */
     staspace=25.0;
-    slomin=-0.8;
-    slomax=0.8;
-    slodel=0.025;
+  
+    slomin=-0.48;
+    slomax=0.48;
+    slodel=0.024;
     nwid=31;
     ibell=5;
+    
     iwindow=25;
     iptbell=5;
 
@@ -99,7 +102,7 @@ int main(void) {
     }
 
     for (j=0;j<nwid;j++) {
-        fprintf(stderr,"j %d %f\n",j,bell[j]);
+        /* fprintf(stderr,"j %d %f\n",j,bell[j]); */
     }
 
     for (j=0;j<PTMAX;j++) {
@@ -120,7 +123,7 @@ int main(void) {
 
     fprintf(stderr,"-------------------------\n");
     for (j=0;j<nofpt;j++) {
-        fprintf(stderr,"j %d %f\n",j,ptbell[j]);
+        /* fprintf(stderr,"j %d %f\n",j,ptbell[j]); */
     }
 
     fprintf(stderr,"-------------------------\n");
@@ -277,6 +280,10 @@ loop1:
 
 } 
 int smooth(int iwin, int nleng, float* ros) {
+    /*
+     * 
+     *
+     */
     float aputra[24000];
     int j,jk,kk;
     float smo;
