@@ -121,10 +121,6 @@ int main(void) {
         }
     }
 
-    fprintf(stderr,"-------------------------\n");
-    for (j=0;j<nofpt;j++) {
-        /* fprintf(stderr,"j %d %f\n",j,ptbell[j]); */
-    }
 
     fprintf(stderr,"-------------------------\n");
     for (ipanel=0;ipanel<nwid;ipanel++) {
